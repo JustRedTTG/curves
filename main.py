@@ -1,11 +1,11 @@
-import pgerom as pe
+import pygameextra as pe
 pe.init()
 pe.display.make((700, 600), "Curvers")
 
 def calculateP(lines, t):
     distance = pe.math.dist(*lines)
-    pos = pe.math.lerp(*lines, distance*t)
-    return (pos.x, pos.y)
+    pos = pe.math.lerp_legacy(*lines, distance*t)
+    return pos
 
 class quadratic_curve:
     def __init__(self, left, center, right, color=(0,0,0), width=1):
@@ -41,15 +41,15 @@ class quadratic_curve:
         pe.draw.circle(color2, self.line1[0], 10, 2)
         pe.draw.circle(color2, self.line1[1], 10, 2)
 
-curve = quadratic_curve((50, 550), (50, 300), (650, 50),pe.color.white, 3)
+curve = quadratic_curve((50, 550), (50, 300), (650, 50),pe.colors.white, 3)
 
 while True:
     for pe.event.c in pe.event.get():
-        pe.event.quitcheckauto()
-    pe.fill.full(pe.color.black)
+        pe.event.quitCheckAuto()
+    pe.fill.full(pe.colors.black)
 
-    curve.draw()
     curve.draw_handles()
+    curve.draw()
 
 
     pe.display.update()
